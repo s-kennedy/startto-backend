@@ -1,5 +1,5 @@
 FROM python:3-alpine
-MAINTAINER Mark Gituma <mark.gituma@gmail.com>
+MAINTAINER Sharon Kennedy <sharon@nomadiclabs.ca>
 
 ENV PROJECT_ROOT /app
 WORKDIR $PROJECT_ROOT
