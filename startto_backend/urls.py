@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token
 from startto_backend.apps.core.views import StatsView
+from startto_backend.apps.artworks.views import MapFeaturesView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,8 +33,9 @@ urlpatterns = [
 
     path(r'api/v1/', include('startto_backend.apps.core.api.urls', namespace='core-api')),
     path(r'api/v1/', include('startto_backend.apps.accounts.api.urls', namespace='account-api')),
-    path(r'api/v1/', include('startto_backend.apps.contact_speaker.api.urls', namespace='contact-speaker-api')),
-    path(r'api/v1/stats/', StatsView.as_view(), name="stats_view")
+    path(r'api/v1/', include('startto_backend.apps.artworks.api.urls', namespace='artwork-api')),
+    path(r'api/v1/stats/', StatsView.as_view(), name="stats-api"),
+    path(r'api/v1/map-features/', MapFeaturesView.as_view(), name="map-features-api"),
 ]
 
 if settings.DEBUG:

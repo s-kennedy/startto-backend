@@ -1,18 +1,20 @@
 from django.contrib import admin
-
-# App
-from startto_backend.apps.core.models import (
-    Location
-)
-
+from startto_backend.apps.core.models import Category, Program
 
 # Register your models here.
-@admin.register(Location)
-class LocationAdmin(admin.ModelAdmin):
+
+# Register your models here.
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
     list_display = [
         'id',
-        'city',
-        'province',
-        'country',
-        'created_at'
+        'name',
+        'submittable_id'
+    ]
+
+@admin.register(Program)
+class ProgramAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'name',
     ]

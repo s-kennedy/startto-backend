@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     # App
     'startto_backend.apps.core',
     'startto_backend.apps.accounts',
-    'startto_backend.apps.contact_speaker'
+    'startto_backend.apps.artworks'
 ]
 
 MIDDLEWARE = [
@@ -213,6 +213,7 @@ OLD_PASSWORD_FIELD_ENABLED = True
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
+    'http://localhost:3000'
 )
 
 CSRF_TRUSTED_ORIGINS = (
@@ -287,3 +288,19 @@ LOGGING = {
         },
     },
 }
+
+# Submittable
+
+SUBMITTABLE_ACCESS_TOKEN = os.environ.get('SUBMITTABLE_ACCESS_TOKEN', "")
+
+# Airtable
+
+AIRTABLE_BASE_ID = os.getenv("AIRTABLE_BASE_ID", "")
+AIRTABLE_API_KEY = os.getenv("AIRTABLE_API_KEY", "")
+AIRTABLE_DATA_TABLE = os.getenv("AIRTABLE_DATA_TABLE", "info")
+
+
+
+
+
+

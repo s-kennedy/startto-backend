@@ -7,10 +7,9 @@ from django.shortcuts import get_object_or_404
 from startto_backend.apps.accounts.api.serializers import (
     UserSerializer,
     ProfileSerializer,
-    ImageSerializer,
-    FeaturedTalkSerializer
+    ImageSerializer
 )
-from startto_backend.apps.accounts.models import (Profile, ProfileLocation, ImageUpload, FeaturedTalk)
+from startto_backend.apps.accounts.models import (Profile, ImageUpload)
 
 # Rest Framework
 from rest_framework import viewsets
@@ -65,19 +64,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (UpdatePermissions, UpdateProfilePermissions,)
 
     def get_queryset(self):
-        queryset = Profile.objects.filter(status=Profile.APPROVED, published=True).order_by("-pk")
-
-        location = self.request.query_params.get('location', None)
-        if location is not None:
-            queryset = queryset.filter(location=location)
-
-        poc = self.request.query_params.get('poc', None)
-        if poc is not None:
-            queryset = queryset.filter(poc=True)
-
-        woman = self.request.query_params.get('woman', None)
-        if woman is not None:
-            queryset = queryset.filter(woman=True)
+        queryset = Profile.objects.all().order_by("-pk")
 
         query = self.request.query_params.get('q', None)
         if query is not None:
@@ -126,17 +113,3 @@ class ImageUploadViewSet(viewsets.ModelViewSet):
         file = self.request.data.get('file')
         serializer.save(profile=profile, file=file)
 
-class FeaturedTalkViewSet(viewsets.ModelViewSet):
-
-    queryset = FeaturedTalk.objects.order_by('id').reverse()
-    serializer_class = FeaturedTalkSerializer
-    permission_classes = (ModifyFeaturedTalkPermissions,)
-    http_method_names = ['get', 'post', 'put', 'delete']
-
-    def perform_create(self, serializer):
-        profile = Profile.objects.get(pk=int(self.request.data.get('profile')))
-
-        serializer.save(profile=profile,
-                        event_name=self.request.data.get('event_name'),
-                        talk_title=self.request.data.get('talk_title'),
-                        url=self.request.data.get('url'))

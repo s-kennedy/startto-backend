@@ -1,5 +1,5 @@
 # App
-from startto_backend.apps.core.models import Location, Topic, SubscriptionGroup
+from startto_backend.apps.core.models import Location, Program
 
 # Rest framework
 from rest_framework import serializers
@@ -10,12 +10,7 @@ class LocationSerializer(serializers.ModelSerializer):
         model = Location
         fields = '__all__'
 
-class TopicSerializer(serializers.ModelSerializer):
+class ProgramSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Topic
-        fields = '__all__'
-
-class SubscriptionGroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SubscriptionGroup
+        model = Program
         fields = '__all__'
