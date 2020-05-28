@@ -212,27 +212,11 @@ OLD_PASSWORD_FIELD_ENABLED = True
 # CORS
 
 CORS_ORIGIN_WHITELIST = (
-    'womenandcolor.com',
-    'www.womenandcolor.com',
-    'womenandcolor-staging.herokuapp.com',
-    'womenandcolor-production.herokuapp.com',
-    'localhost:8080',
-    '127.0.0.1:8080',
-    'localhost:9000',
-    'women-and-color-staging.herokuapp.com',
-    'women-and-color-production.herokuapp.com',
+    'http://localhost:8000',
 )
 
 CSRF_TRUSTED_ORIGINS = (
-    'womenandcolor.com',
-    'api.womenandcolor.com',
-    'www.womenandcolor.com',
-    'womenandcolor-staging.herokuapp.com',
-    'womenandcolor-production.herokuapp.com',
-    'womenandcolor-api-staging.herokuapp.com',
-    'womenandcolor-api-production.herokuapp.com',
-    'localhost:8080',
-    'localhost:8000'
+    'http://localhost:8000'
 )
 
 # Email
@@ -266,6 +250,7 @@ AWS_S3_CUSTOM_DOMAIN = "s3.%s.amazonaws.com/%s" % (AWS_REGION, AWS_STORAGE_BUCKE
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=31536000',
 }
+AWS_DEFAULT_ACL = None
 CLOUDFRONT_DOMAIN = os.environ.get('CLOUDFRONT_DOMAIN', '')
 
 AWS_MEDIA_LOCATION = 'media'

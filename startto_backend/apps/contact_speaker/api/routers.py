@@ -6,4 +6,4 @@ from rest_framework import routers
 
 
 router = routers.SimpleRouter()
-router.register(r'contact_form', ContactFormViewSet, base_name='contact_form')
+router.register(r'contact_form', ContactFormViewSet, basename='contact_form')

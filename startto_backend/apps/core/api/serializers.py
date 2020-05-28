@@ -1,5 +1,5 @@
 # App
-from wac.apps.core.models import Location, Topic, SubscriptionGroup
+from startto_backend.apps.core.models import Location, Topic, SubscriptionGroup
 
 # Rest framework
 from rest_framework import serializers

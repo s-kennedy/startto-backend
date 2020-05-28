@@ -5,7 +5,7 @@ from startto_backend.apps.accounts.models import Profile
 
 # Rest Framework
 from rest_framework import viewsets
-from rest_framework.decorators import list_route
+from rest_framework.decorators import action
 from rest_framework.response import Response
 
 
@@ -13,7 +13,7 @@ class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.order_by('city')
     serializer_class = LocationSerializer
 
-    @list_route(methods=['get'])
+    @action(detail=False, methods=['get'])
     def active(self, request, *args, **kwargs):
         unique_user_locations = Profile.objects.filter(status=Profile.APPROVED).values_list('location', flat=True).distinct()
         user_location_ids = list(filter(None.__ne__, unique_user_locations))
